@@ -1,3 +1,5 @@
+$primaryButtonColor:#26f426;
+
 /* Outer box styling */
 .box {
   max-width: 500px;
@@ -44,39 +46,17 @@ input[type="text"]:focus {
   border-color: #007bff;
   outline: none;
 }
-
-/* Button styling */
-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  border: none;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s;
-}
 .btn {
   width: 100%;
   padding: 10px;
-  background-color: #26f426;
+  background-color: $primaryButtonColor;
   border: none;
   color: white;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
 }
-.btn-cancel {
-  width: 100%;
-  padding: 10px;
-  background-color: #f51010f7;
-  border: none;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
+
 
 .btn-container {
   display: flex;

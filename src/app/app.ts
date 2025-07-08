@@ -1,36 +1,53 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { TodoService } from './services/todo-service';
 import { Itodo } from './interface/itodo';
 import { CommonModule } from '@angular/common';
-
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
-  imports: [ReactiveFormsModule,CommonModule, RouterOutlet,RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterOutlet, RouterLink],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
-export class App {
+export class App implements OnInit{
   protected title = 'todo';
   addTodoList: FormGroup;
-  constructor(
-    private fb: FormBuilder,
-    private todoservice:TodoService,
-  ) {
+  constructor(private fb: FormBuilder, private todoservice: TodoService,private router:Router) {
     this.addTodoList = this.fb.group({
-      description: ['',[Validators.required,Validators.minLength(3)]],
-      status:"Pending",
+      description: ['', [Validators.required, Validators.minLength(3)]],
+      status: 'Pending',
     });
+  }
+  ngOnInit(): void {
+    this.router.navigateByUrl('viewTodo')
   }
   onSubmit() {
-    this.todoservice.request<Itodo>('POST', '/', this.addTodoList.value).subscribe({
-      next: () => {
-        this.todoservice.triggerTodoListRefresh();
-        this.addTodoList.reset()
-      }
-    });
+    console.log('onSubmit called');
+    if (this.addTodoList.valid) {
+      let postSubsription: Subscription = this.todoservice
+        .request<Itodo>('POST', '/', this.addTodoList.value)
+        .subscribe({
+          next: () => {
+            this.todoservice.triggerTodoListRefresh();
+            this.addTodoList.reset();
+          },
+          error: (error) => {
+            console.error(error);
+          },
+          complete: () => {
+            if (postSubsription.closed) {
+              postSubsription.unsubscribe();
+            }
+          },
+        });
+    }
   }
-
 }

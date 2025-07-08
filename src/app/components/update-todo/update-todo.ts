@@ -53,7 +53,7 @@ export class UpdateTodo implements OnInit {
       .request<Itodo>('PUT', `/${this.todoId.tid}`, this.updateTodoFrom.value)
       .subscribe({
         next: () => {
-          this.route.navigateByUrl('');
+          this.route.navigateByUrl('viewTodo');
           this.todoService.triggerTodoListRefresh();
         }
       });

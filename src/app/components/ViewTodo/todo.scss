@@ -1,0 +1,75 @@
+$updateButton: rgb(243, 243, 10);
+$deleteButton: rgb(248, 45, 45);
+@mixin commonButton($color) {
+  padding: 5px;
+  background-color:$color;
+  border: none;
+  color: rgb(12, 12, 12);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.tablebox {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  background-color: #f4f6db;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.tablebox th {
+  padding: 10px 12px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.tablebox td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #ccc;
+}
+
+.tablebox tr:nth-child(even) {
+  background-color: #edf7f4;
+}
+
+.tablebox tr:hover {
+  background-color: #d7f0ea;
+}
+
+.box {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center horizontally */
+  margin-top: 1.5rem;
+}
+.box div {
+  margin-top: 20px auto;
+}
+
+.btn-update {
+    @include commonButton($updateButton)
+}
+
+.btn-delete {
+   @include commonButton($deleteButton)
+}
+
+.search-box input[type="text"] {
+  width: 300px;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-box input[type="text"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
+}

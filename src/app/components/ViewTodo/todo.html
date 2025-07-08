@@ -21,8 +21,8 @@
       <tr
         *ngFor="let todo of filteredTodoList">
         <td>{{ todo.id }}</td>
-        <td>{{ todo.description }}</td>
-        <td>{{ todo.status }}</td>
+        <td [ngStyle]="{ 'text-decoration': todo.status === 'Completed' ? 'line-through' : 'none' }">{{ todo.description }}</td>
+        <td [ngStyle]="{ color: todo.status === 'Pending' ? 'orange' : 'green' }">{{ todo.status }}</td>
          <td>
           <button class="btn-update" (click)="updateUser(todo.id)">
             Update
