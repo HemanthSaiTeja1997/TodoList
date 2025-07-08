@@ -1,0 +1,37 @@
+<div class="box">
+  <div class="search-box">
+  <input
+    type="text"
+    placeholder="Search"
+    [(ngModel)]="searchTerm"
+    (ngModelChange)="filterTodoList()" />
+</div>
+
+<div class="box">
+  <table class="tablebox">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Actions</th>
+            </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let todo of filteredTodoList">
+        <td>{{ todo.id }}</td>
+        <td>{{ todo.description }}</td>
+        <td>{{ todo.status }}</td>
+         <td>
+          <button class="btn-update" (click)="updateUser(todo.id)">
+            Update
+          </button>
+        </td>
+             <td>
+          <button class="btn-delete" (click)="ondelete(todo.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
