@@ -20,8 +20,6 @@ export class Todo implements OnInit {
   subscription!: Subscription;
 
   ngOnInit(): void {
-    console.log('ngoninit');
-
     this.todoservice.todoListUpdates$.subscribe({
       next: () => {
         this.getTodoList();

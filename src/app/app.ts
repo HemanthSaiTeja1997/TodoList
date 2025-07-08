@@ -22,7 +22,7 @@ export class App implements OnInit{
   addTodoList: FormGroup;
   constructor(private fb: FormBuilder, private todoservice: TodoService,private router:Router) {
     this.addTodoList = this.fb.group({
-      description: ['', [Validators.required, Validators.minLength(3)]],
+      description: ['', [Validators.required, Validators.minLength(0)]],
       status: 'Pending',
     });
   }
@@ -30,14 +30,18 @@ export class App implements OnInit{
     this.router.navigateByUrl('viewTodo')
   }
   onSubmit() {
-    console.log('onSubmit called');
-    if (this.addTodoList.valid) {
+    let { description, status } = this.addTodoList.value;
+
+    console.log('onSubmit called',this.addTodoList.valid);
+    console.log('onSubmit called',this.addTodoList.value);
+
+    if (this.addTodoList.valid && description?.trim() && status?.trim()) {
       let postSubsription: Subscription = this.todoservice
         .request<Itodo>('POST', '/', this.addTodoList.value)
         .subscribe({
           next: () => {
             this.todoservice.triggerTodoListRefresh();
-            this.addTodoList.reset();
+            this.addTodoList.reset({ status: 'Pending' });
           },
           error: (error) => {
             console.error(error);

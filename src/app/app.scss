@@ -1,6 +1,15 @@
 $primaryButtonColor:#26f426;
+@mixin commonButton($color){
+    width: 100%;
+  padding: 10px;
+  background-color: $color;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+};
 
-/* Outer box styling */
 .box {
   max-width: 500px;
   margin: 50px auto;
@@ -12,19 +21,18 @@ $primaryButtonColor:#26f426;
 }
 
 
-/* Form header */
+
 .box h1 {
   text-align: center;
   color: #007bff;
   margin-bottom: 20px;
 }
 
-/* Form layout */
 form div {
   margin-bottom: 15px;
 }
 
-/* Label styling */
+
 label {
   display: block;
   margin-bottom: 5px;
@@ -32,7 +40,6 @@ label {
   color: #333;
 }
 
-/* Input styling */
 input[type="text"] {
   width: 100%;
   padding: 8px 12px;
@@ -47,23 +54,16 @@ input[type="text"]:focus {
   outline: none;
 }
 .btn {
-  width: 100%;
-  padding: 10px;
-  background-color: $primaryButtonColor;
-  border: none;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
+@include commonButton($primaryButtonColor)
 }
 
 
 .btn-container {
   display: flex;
-  flex-direction: row; /* Horizontal layout */
-  gap: 10px; /* Space between buttons */
+  flex-direction: row; 
+  gap: 10px; 
   justify-content: center; 
-  flex-wrap: wrap; /* Wrap to next line if space is small (optional) */
+  flex-wrap: wrap; 
 }
 .container-bottom{
   margin-top: 40px;
