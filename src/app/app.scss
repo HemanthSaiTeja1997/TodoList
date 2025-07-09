@@ -1,0 +1,36 @@
+$primaryButtonColor: #26f426;
+
+@mixin commonButton($color) {
+  padding: 8px 16px;
+  background-color: $color;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  min-width: 120px;
+  transition: background-color 0.3s ease;
+  margin: 20px
+}
+
+.btn {
+  @include commonButton($primaryButtonColor);
+  width: auto; // Make width dynamic based on content
+}
+
+.btn-group {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  border-bottom: 2px dashed #ccc;
+}
+
+button.btn:disabled {
+  background-color: #a7a7a7;
+  color: #e0e0e0;
+  cursor: not-allowed;
+  opacity: 0.6;
+}

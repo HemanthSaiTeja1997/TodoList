@@ -1,0 +1,10 @@
+<div >
+ <div class="btn-group">
+    <button class="btn" (click)="showViewButton()" routerLink="addTodo">Click Here to Add Todo</button>
+
+    <button class="btn" (click)="showViewButton()" routerLink="viewTodo" *ngIf="showViewTaskButton" >ViewTasK</button>
+  </div>
+  <div class="container-bottom">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="box">
+  <div>
+    <h1>Todo</h1>
+  </div>
+  <div>
+    <form [formGroup]="addTodoList" (ngSubmit)="onSubmit()">
+      <div>
+        <label>Description</label>
+        <input
+          type="text"
+          placeholder="Enter the Description"
+          formControlName="description"
+          required
+        />
+         @if((addTodoList.controls['description'].dirty || addTodoList.controls['description'].touched)){
+            @if(addTodoList.controls['description'].invalid){
+                <small style="color: rgb(236, 41, 41);">Description is Required</small>
+            }
+        }
+        @if((addTodoList.controls['description'].invalid)){
+
+        }
+      </div>
+      <div class="btn-container">
+        <div>
+          <button class="btn" type="submit" [disabled]="addTodoList.invalid">
+            AddTask
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
