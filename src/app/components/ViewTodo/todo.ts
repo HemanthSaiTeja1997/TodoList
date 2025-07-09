@@ -5,10 +5,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Itodo } from '../../interface/itodo';
 import { Router } from '@angular/router';
+import { SharedButton } from "../shared-button/shared-button";
 
 @Component({
   selector: 'app-todo',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, SharedButton],
   templateUrl: './todo.html',
   styleUrl: './todo.scss',
 })
@@ -44,8 +45,8 @@ export class Todo implements OnInit {
         todo.status.toLowerCase().includes(term)
     );
   }
-  getTodoList() {
-    let getSubscription: Subscription = this.todoservice.request<Itodo[]>('GET', '/').subscribe({
+  getTodoList() :void{
+    const getSubscription: Subscription = this.todoservice.httpCall<Itodo[]>('GET', '/').subscribe({
       next: (res) => {
         console.log(res);
         this.TodoList = res;
@@ -62,11 +63,11 @@ export class Todo implements OnInit {
     });
   }
 
-  updateUser(id: number) {
+  updateUser(id: number) :void {
     this.route.navigate(['updateTodo', id]);
   }
-  ondelete(id: number) {
-    this.todoservice.request<void>('DELETE', `/${id}`).subscribe({
+  ondelete(id: number) :void{
+    this.todoservice.httpCall<void>('DELETE', `/${id}`).subscribe({
       next: () => {
         this.getTodoList();
       },

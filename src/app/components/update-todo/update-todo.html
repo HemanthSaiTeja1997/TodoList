@@ -3,7 +3,7 @@
     <h1>Todo</h1>
   </div>
   <div>
-    <form  [formGroup]="updateTodoFrom" (ngSubmit)="onSubmit()">
+    <form [formGroup]="updateTodoFrom" (ngSubmit)="onSubmit()">
       <div>
         <label>Description</label>
         <input
@@ -13,19 +13,20 @@
           required
         />
       </div>
-           <div>
-      <label>Status</label>
- <select formControlName="status">
-    <option value="Pending">Pending</option>
-    <option value="Completed">Completed</option>
-
- </select>
+      <div>
+        <label>Status</label>
+        <select formControlName="status">
+          <option value="Pending">Pending</option>
+          <option value="Completed">Completed</option>
+        </select>
       </div>
       <div class="btn-container">
-        
-            <div>
-                <button class="btn" type="submit">Save</button>
-            </div>
+        <app-shared-button
+          [label]="'Save'"
+          [route]="'viewTodo'"
+          [isVisible]="true"
+        />
+        <!-- <button class="btn" type="submit">Save</button> -->
       </div>
     </form>
   </div>

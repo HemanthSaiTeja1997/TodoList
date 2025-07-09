@@ -4,10 +4,11 @@ import { TodoService } from '../../services/todo-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Itodo } from '../../interface/itodo';
 import { take } from 'rxjs';
+import { SharedButton } from "../shared-button/shared-button";
 
 @Component({
   selector: 'app-update-todo',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, SharedButton],
   templateUrl: './update-todo.html',
   styleUrl: './update-todo.scss',
 })
@@ -35,7 +36,7 @@ export class UpdateTodo implements OnInit {
       tid: this.activeRoute.snapshot.params['id'],
     };
     this.todoService
-      .request<Itodo>('GET', `/${this.todoId.tid}`)
+      .httpCall<Itodo>('GET', `/${this.todoId.tid}`)
       .pipe(take(1))
       .subscribe({
         next: (res) => {
@@ -50,7 +51,7 @@ export class UpdateTodo implements OnInit {
   }
       onSubmit() {
     this.todoService
-      .request<Itodo>('PUT', `/${this.todoId.tid}`, this.updateTodoFrom.value)
+      .httpCall<Itodo>('PUT', `/${this.todoId.tid}`, this.updateTodoFrom.value)
       .subscribe({
         next: () => {
           this.route.navigateByUrl('viewTodo');

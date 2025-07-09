@@ -1,1 +1,6 @@
-<p>shared-button works!</p>
+<button *ngIf="isVisible && !isDeleteButton" [class]="customClass" [routerLink]="route" (click)="clickHandler()">
+  {{ label }}
+</button>
+<button *ngIf="isDeleteButton" [class]="customClass" (click)="clickHandler()">
+  {{ label }}
+</button>

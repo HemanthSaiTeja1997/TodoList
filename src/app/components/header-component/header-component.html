@@ -1,0 +1,22 @@
+<div class="btn-group">
+  <app-shared-button
+    [label]="'Click Here to Add Todo'"
+    [route]="'addTodo'"
+    (onClickEvent)="displayButton2()"
+  />
+  <app-shared-button
+    [label]="'ViewTasK'"
+    [route]="'viewTodo'"
+    [isVisible]="showViewTaskButton"
+    (onClickEvent)="displayButton()"
+  />
+  <!-- <button class="btn" (click)="showViewButton2()" routerLink="addTodo">Click Here to Add Todo</button>
+    <button
+    *ngIf="showViewTaskButton"
+      class="btn"
+      (click)="showViewButton()"
+      routerLink="viewTodo"
+      >
+      ViewTasK
+    </button> -->
+</div>

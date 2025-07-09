@@ -7,47 +7,22 @@
     },
     {
       "id": 2,
-      "description": "Lunch",
+      "description": "breakFast At 12",
       "status": "Completed"
     },
     {
       "id": 3,
-      "description": "breakFast At 11",
+      "description": "lucky me",
       "status": "Completed"
     },
     {
       "id": 4,
-      "description": "people are dumb",
+      "description": "hemanth pro",
       "status": "Completed"
     },
     {
       "id": 5,
-      "description": "breakFast At 11",
-      "status": "Completed"
-    },
-    {
-      "description": "lucky me",
-      "status": "Pending",
-      "id": 6
-    },
-    {
-      "description": "breakFast At 12",
-      "status": "Pending",
-      "id": 7
-    },
-    {
-      "id": 8,
-      "description": "hemanth ",
-      "status": "Completed"
-    },
-    {
-      "id": 9,
-      "description": "HemanthLunch T 5",
-      "status": "Completed"
-    },
-    {
-      "id": 10,
-      "description": "breakFast At 11",
+      "description": "hemanth pro123",
       "status": "Completed"
     }
   ]

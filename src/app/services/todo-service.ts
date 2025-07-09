@@ -12,7 +12,7 @@ export class TodoService {
   private baseUrl=environment.apiUrl;
  constructor(private http:HttpClient) { }
   
-  request<T>(method:'GET'|'POST'|'PUT'|'DELETE',path:string='',body?:any) : Observable<T>{
+  httpCall<T>(method:'GET'|'POST'|'PUT'|'DELETE',path:string='',body?:any) : Observable<T>{
     const url = `${this.baseUrl}${path}`;
     return this.http.request<T>(method,url,{body}).pipe(
       catchError(this.handleError)

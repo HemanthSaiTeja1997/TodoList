@@ -1,29 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { TodoService } from './services/todo-service';
-import { Itodo } from './interface/itodo';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Subscription } from 'rxjs';
+import { HeaderComponent } from "./components/header-component/header-component";
 
 @Component({
   selector: 'app-root',
-  imports: [ReactiveFormsModule, CommonModule, RouterOutlet, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterOutlet, HeaderComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {
-  showViewTaskButton:boolean=true;
-  showViewButton(){
-    this.showViewTaskButton=!this.showViewTaskButton;
-  }
-  showViewButton2(){
-    this.showViewTaskButton=!this.showViewTaskButton;
-this.showViewTaskButton=true;
-  }
-}
+export class App {}
