@@ -22,4 +22,8 @@ export class App {
   showViewButton(){
     this.showViewTaskButton=!this.showViewTaskButton;
   }
+  showViewButton2(){
+    this.showViewTaskButton=!this.showViewTaskButton;
+this.showViewTaskButton=true;
+  }
 }
