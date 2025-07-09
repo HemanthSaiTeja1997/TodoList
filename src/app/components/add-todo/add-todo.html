@@ -12,21 +12,23 @@
           formControlName="description"
           required
         />
-         @if((addTodoList.controls['description'].dirty || addTodoList.controls['description'].touched)){
-            @if(addTodoList.controls['description'].invalid){
-                <small style="color: rgb(236, 41, 41);">Description is Required</small>
-            }
-        }
-        @if((addTodoList.controls['description'].invalid)){
-
-        }
+       <small class="error-color"
+  *ngIf="addTodoList.controls['description']?.invalid &&
+         (addTodoList.controls['description']?.dirty || 
+          addTodoList.controls['description']?.touched)">
+  Description is required
+</small>
       </div>
       <div class="btn-container">
-        <div>
-          <button class="btn" type="submit" [disabled]="addTodoList.invalid">
+      <app-shared-button
+          [label]="buttonLabel.AddTask"
+          [isVisible]="true"
+         [disabled]="addTodoList.invalid"
+        />
+          <!-- <button class="btn" type="submit" [disabled]="addTodoList.invalid">
             AddTask
-          </button>
-        </div>
+          </button> -->
+    
       </div>
     </form>
   </div>

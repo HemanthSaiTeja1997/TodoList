@@ -14,6 +14,7 @@ export class SharedButton {
   @Input() route: string = '';
   @Input() isDeleteButton: boolean = false;
   @Input() isVisible: boolean = true;
+  @Input() disabled: boolean = false; 
   @Output() onClickEvent = new EventEmitter();
   clickHandler() {
     this.onClickEvent.emit('button clicked');

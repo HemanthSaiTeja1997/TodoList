@@ -4,7 +4,8 @@ import { TodoService } from '../../services/todo-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Itodo } from '../../interface/itodo';
 import { take } from 'rxjs';
-import { SharedButton } from "../shared-button/shared-button";
+import { SharedButton } from '../shared-button/shared-button';
+import { ButtonLabel } from '../../button-labels.enum';
 
 @Component({
   selector: 'app-update-todo',
@@ -14,6 +15,8 @@ import { SharedButton } from "../shared-button/shared-button";
 })
 export class UpdateTodo implements OnInit {
   updateTodoFrom: FormGroup;
+  buttonLabel = ButtonLabel;
+
   constructor(
     private todoService: TodoService,
     private activeRoute: ActivatedRoute,
@@ -49,14 +52,14 @@ export class UpdateTodo implements OnInit {
         },
       });
   }
-      onSubmit() {
+  onSubmit() {
     this.todoService
       .httpCall<Itodo>('PUT', `/${this.todoId.tid}`, this.updateTodoFrom.value)
       .subscribe({
         next: () => {
           this.route.navigateByUrl('viewTodo');
           this.todoService.triggerTodoListRefresh();
-        }
+        },
       });
   }
 }

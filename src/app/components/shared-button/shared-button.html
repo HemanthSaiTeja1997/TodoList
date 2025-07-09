@@ -1,4 +1,4 @@
-<button *ngIf="isVisible && !isDeleteButton" [class]="customClass" [routerLink]="route" (click)="clickHandler()">
+<button *ngIf="isVisible && !isDeleteButton" [class]="customClass" [routerLink]="route" [disabled]="disabled" (click)="clickHandler()">
   {{ label }}
 </button>
 <button *ngIf="isDeleteButton" [class]="customClass" (click)="clickHandler()">

@@ -9,15 +9,19 @@ import { TodoService } from '../../services/todo-service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Itodo } from '../../interface/itodo';
-
+import { SharedButton } from "../shared-button/shared-button";
+import { ButtonLabel } from '../../button-labels.enum';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-add-todo',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, SharedButton,CommonModule],
   templateUrl: './add-todo.html',
   styleUrl: './add-todo.scss',
 })
 export class AddTodo {
   addTodoList: FormGroup;
+  buttonLabel = ButtonLabel; 
+  
   constructor(
     private fb: FormBuilder,
     private todoservice: TodoService,

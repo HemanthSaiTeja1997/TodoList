@@ -1,12 +1,12 @@
 <div class="btn-group">
   <app-shared-button
-    [label]="'Click Here to Add Todo'"
-    [route]="'addTodo'"
+    [label]="buttonLabel.headerLadel"
+    [route]="buttonLabel.routeToAddTodo"
     (onClickEvent)="displayButton2()"
   />
   <app-shared-button
-    [label]="'ViewTasK'"
-    [route]="'viewTodo'"
+    [label]="buttonLabel.ViewTask"
+    [route]="buttonLabel.routeToViewTodo"
     [isVisible]="showViewTaskButton"
     (onClickEvent)="displayButton()"
   />
