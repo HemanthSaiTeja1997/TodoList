@@ -6,9 +6,11 @@
   />
   <app-shared-button
     [label]="buttonLabel.ViewTask"
-    [route]="buttonLabel.routeToViewTodo"
+    [route]="buttonLabel.routeToHeaderViewTodo"
     [isVisible]="showViewTaskButton"
     (onClickEvent)="displayButton()"
   />
 </div>
-  
+<div class="container-bottom btn">
+  <router-outlet></router-outlet>
+</div>

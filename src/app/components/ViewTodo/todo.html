@@ -40,16 +40,15 @@
             <app-shared-button
               [label]="buttonLabel.Update"
               (onClickEvent)="updateUser(todo.id)"
-              [customClass]="buttonLabel.updateClass"
-
+              [customClass]="'btn'"
             />
           </td>
           <td>
             <app-shared-button
-            [isDeleteButton]="true"
+              [isDeleteButton]="true"
               [label]="buttonLabel.Delete"
               (onClickEvent)="ondelete(todo.id)"
-              [customClass]="buttonLabel.deleteClass"
+              [customClass]="'btn btn-danger'"
             />
             <!-- <button class="btn-delete" (click)="ondelete(todo.id)">
               Delete

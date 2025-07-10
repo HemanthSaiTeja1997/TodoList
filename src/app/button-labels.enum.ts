@@ -5,14 +5,13 @@ export enum ButtonLabel {
   Delete = 'Delete',
   Update = 'Update',
   routeToAddTodo='addTodo',
-  routeToViewTodo='viewTodo',
+  routeToViewTodo='header/viewTodo',
+  routeToHeaderViewTodo='viewTodo',
   headerLadel='Click Here To Add Todo',
-  updateClass='btn',
-  deleteClass='btn btn-danger',
   POST='POST',
   GET='GET',
   PUT='PUT',
   DELETE='DELETE',
-  routeToUpdateTodo="updateTodo"
+  routeToUpdateTodo="header/updateTodo"
 
 }
