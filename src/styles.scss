@@ -1,5 +1,11 @@
+$primaryColor: #007bff;
+$PrimaryBorder: 1px solid #ccc;
+$Margin: 10px;
+$PrimaryPadding: 10px 12px;
+$LabelColor:#333;
+
 @mixin commonButton($color) {
-  padding: 8px 16px;
+  padding:  $PrimaryPadding;
   background-color: $color;
   border: none;
   color: white;
@@ -8,7 +14,7 @@
   font-size: 14px;
   min-width: 120px;
   transition: background-color 0.3s ease;
-  margin: 20px;
+  margin: $Margin;
   width: auto;
 }
 
@@ -19,8 +25,8 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 20px;
-  border-bottom: 2px dashed #ccc;
+  margin-bottom: $Margin;
+  border-bottom: $PrimaryBorder;
 }
 
 
@@ -28,7 +34,7 @@
   max-width: 500px;
   margin: 50px auto;
   padding: 30px;
-  border: 1px solid #ddd;
+  border: $PrimaryBorder;
   border-radius: 10px;
   background-color: #f9f9f9;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -36,43 +42,43 @@
 
 .box h1 {
   text-align: center;
-  color: #007bff;
-  margin-bottom: 20px;
+  color: $primaryColor;
+  margin-bottom: $Margin;
 }
 
 .box-viewTodo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 1.5rem;
+  margin-top: $Margin;
 }
 
 .box-viewTodo div {
-  margin-top: 20px auto;
+  margin-top: $Margin;
 }
 
 form div {
-  margin-bottom: 15px;
+  margin-bottom: $Margin;
 }
 
 label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
-  color: #333;
+  color:$LabelColor;
 }
 
 input[type="text"] {
   width: 100%;
-  padding: 8px 12px;
-  border: 1px solid #ccc;
+  padding:  $PrimaryPadding;
+  border: $PrimaryBorder;
   border-radius: 5px;
   box-sizing: border-box;
   transition: border-color 0.3s;
 }
 
 input[type="text"]:focus {
-  border-color: #007bff;
+  border-color: $primaryColor;
   outline: none;
 }
 
@@ -88,7 +94,7 @@ input[type="text"]:focus {
 .tablebox {
   width: 100%;
   border-collapse: collapse;
-  margin: 20px auto;
+  margin: $Margin;
   background-color: #f4f6db;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
@@ -97,14 +103,14 @@ input[type="text"]:focus {
 }
 
 .tablebox th {
-  padding: 10px 12px;
+  padding:  $PrimaryPadding;
   text-align: center;
   font-weight: bold;
 }
 
 .tablebox td {
-  padding: 10px 12px;
-  border-bottom: 1px solid #ccc;
+  padding:  $PrimaryPadding;
+  border-bottom: $PrimaryBorder;
 }
 
 .tablebox tr:nth-child(even) {
@@ -117,8 +123,8 @@ input[type="text"]:focus {
 
 .search-box input[type="text"] {
   width: 300px;
-  padding: 10px 15px;
-  border: 1px solid #ccc;
+  padding:  $PrimaryPadding;
+  border: $PrimaryBorder;
   border-radius: 25px;
   font-size: 16px;
   outline: none;
@@ -127,7 +133,7 @@ input[type="text"]:focus {
 }
 
 .search-box input[type="text"]:focus {
-  border-color: #007bff;
+  border-color:$primaryColor;
   box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
 }
 

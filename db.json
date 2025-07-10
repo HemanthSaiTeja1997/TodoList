@@ -24,11 +24,6 @@
       "id": 7,
       "description": "breakFast At 11",
       "status": "Completed"
-    },
-    {
-      "description": "asdfasdf",
-      "status": "Pending",
-      "id": 8
     }
   ]
 }
