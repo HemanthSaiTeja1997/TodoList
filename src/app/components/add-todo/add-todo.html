@@ -1,39 +1,6 @@
-<div class="box">
-  <div>
-    <h1>Todo</h1>
-  </div>
-  <div>
-    <form [formGroup]="addTodoList" (ngSubmit)="onSubmit()">
-      <div>
-        <label>Description</label>
-        <input
-          type="text"
-          placeholder="Enter the Description"
-          formControlName="description"
-          required
-        />
-        <small
-          class="error-color"
-          *ngIf="
-            addTodoList.controls['description']?.invalid &&
-            (addTodoList.controls['description']?.dirty ||
-              addTodoList.controls['description']?.touched)
-          "
-        >
-          Description is required
-        </small>
-      </div>
-      <div class="btn-container">
-        <app-shared-button
-          [label]="buttonLabel.AddTask"
-          [isVisible]="true"
-          [isDeleteButton]="true"
-          [disabled]="addTodoList.invalid"
-        />
-        <!-- <button class="btn" type="submit" [disabled]="addTodoList.invalid">
-            AddTask
-          </button> -->
-      </div>
-    </form>
-  </div>
-</div>
+<app-todo-form
+  [formGroup]="addTodoList"
+  [isEditMode]="false"
+  [buttonLabel]="buttonLabel.AddTask"
+  (submitForm)="onSubmit()"
+/>

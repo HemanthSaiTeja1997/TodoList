@@ -6,7 +6,7 @@ import { HeaderComponent } from "./components/header-component/header-component"
 
 @Component({
   selector: 'app-root',
-  imports: [ReactiveFormsModule, CommonModule, RouterOutlet, HeaderComponent],
+  imports: [ReactiveFormsModule, CommonModule, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

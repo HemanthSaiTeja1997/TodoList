@@ -1,0 +1,39 @@
+<div class="box">
+  <form [formGroup]="formGroup" (ngSubmit)="submitForm.emit()">
+    <div>
+      <label>Description</label>
+      <input
+        type="text"
+        placeholder="Enter the Description"
+        formControlName="description"
+        required
+      />
+      <small
+        class="error-color"
+        *ngIf="formGroup.controls['description']?.invalid &&
+          (formGroup.controls['description']?.dirty || formGroup.controls['description']?.touched)
+        "
+      >
+        Description is required
+      </small>
+    </div>
+
+    <div *ngIf="showStatus">
+      <label>Status</label>
+      <select formControlName="status">
+        <option value="Pending">Pending</option>
+        <option value="Completed">Completed</option>
+      </select>
+    </div>
+
+    <div class="btn-container">
+      <app-shared-button
+        [label]="buttonLabel"
+        [route]="route"
+        [isVisible]="true"
+        [disabled]="formGroup.invalid"
+        [isDeleteButton]="!isEditMode"
+      />
+    </div>
+  </form>
+</div>

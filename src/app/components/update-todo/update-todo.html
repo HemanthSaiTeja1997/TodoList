@@ -1,32 +1,8 @@
-<div class="box">
-  <div>
-    <h1>Todo</h1>
-  </div>
-  <div>
-    <form [formGroup]="updateTodoFrom" (ngSubmit)="onSubmit()">
-      <div>
-        <label>Description</label>
-        <input
-          type="text"
-          placeholder="Enter the Description"
-          formControlName="description"
-          required
-        />
-      </div>
-      <div>
-        <label>Status</label>
-        <select formControlName="status">
-          <option value="Pending">Pending</option>
-          <option value="Completed">Completed</option>
-        </select>
-      </div>
-      <div class="btn-container">
-        <app-shared-button
-          [label]="buttonLabel.Save"
-          [route]="buttonLabel.routeToViewTodo"
-          [isVisible]="true"
-        />
-      </div>
-    </form>
-  </div>
-</div>
+<app-todo-form
+  [formGroup]="updateTodoForm"
+  [isEditMode]="true"
+  [buttonLabel]="buttonLabel.Save"
+  [route]="buttonLabel.routeToViewTodo"
+  [showStatus]="true"
+  (submitForm)="onSubmit()"
+/>

@@ -7,15 +7,16 @@ import { Subscription, take } from 'rxjs';
 import { SharedButton } from '../shared-button/shared-button';
 import { ButtonLabel } from '../../button-labels.enum';
 import { ToastrService } from 'ngx-toastr';
+import { TodoForm } from '../todo-form/todo-form';
 
 @Component({
   selector: 'app-update-todo',
-  imports: [ReactiveFormsModule, SharedButton],
+  imports: [ReactiveFormsModule, TodoForm],
   templateUrl: './update-todo.html',
   styleUrl: './update-todo.scss',
 })
 export class UpdateTodo implements OnInit {
-  updateTodoFrom: FormGroup;
+  updateTodoForm: FormGroup;
   buttonLabel = ButtonLabel;
 
   constructor(
@@ -23,9 +24,9 @@ export class UpdateTodo implements OnInit {
     private activeRoute: ActivatedRoute,
     private route: Router,
     private fb: FormBuilder,
-    private toastMessage:ToastrService
+    private toastMessage: ToastrService
   ) {
-    this.updateTodoFrom = this.fb.group({
+    this.updateTodoForm = this.fb.group({
       id: [''],
       description: [''],
       status: ['Pending'],
@@ -37,9 +38,9 @@ export class UpdateTodo implements OnInit {
   };
 
   ngOnInit(): void {
-this.loadTodoData();
+    this.loadTodoData();
   }
-  loadTodoData():void{
+  loadTodoData(): void {
     this.todoId = {
       tid: this.activeRoute.snapshot.params['id'],
     };
@@ -49,7 +50,7 @@ this.loadTodoData();
       .subscribe({
         next: (res) => {
           this.todoData = res;
-          this.updateTodoFrom.setValue({
+          this.updateTodoForm.setValue({
             id: this.todoData.id,
             description: this.todoData.description,
             status: this.todoData.status,
@@ -57,23 +58,27 @@ this.loadTodoData();
         },
       });
   }
-  onSubmit():void {
-   const updateSubsription: Subscription = this.todoService
-      .apiRequest<Itodo>(this.buttonLabel.PUT, `/${this.todoId.tid}`, this.updateTodoFrom.value)
+  onSubmit(): void {
+    const updateSubsription: Subscription = this.todoService
+      .apiRequest<Itodo>(
+        this.buttonLabel.PUT,
+        `/${this.todoId.tid}`,
+        this.updateTodoForm.value
+      )
       .subscribe({
         next: () => {
-          this.toastMessage.success("Update Successful!")
+          this.toastMessage.success('Update Successful!');
           this.route.navigateByUrl(this.buttonLabel.routeToViewTodo);
         },
-        error:(error)=>{
-          this.toastMessage.error("Failed updating...!")
-            console.error(error);
+        error: (error) => {
+          this.toastMessage.error('Failed updating...!');
+          console.error(error);
         },
-        complete:()=>{
-          if(updateSubsription.closed){
+        complete: () => {
+          if (updateSubsription.closed) {
             updateSubsription.unsubscribe();
           }
-        }
+        },
       });
   }
 }
