@@ -7,23 +7,13 @@
     },
     {
       "id": 2,
-      "description": "breakFast At 12",
-      "status": "Completed"
-    },
-    {
-      "id": 3,
-      "description": "lucky me",
-      "status": "Completed"
-    },
-    {
-      "id": 4,
-      "description": "people are dumb7766",
-      "status": "Completed"
-    },
-    {
-      "id": 6,
       "description": "people are dumb",
       "status": "Completed"
+    },
+    {
+      "description": "breakFast At 12",
+      "status": "Pending",
+      "id": 3
     }
   ]
 }

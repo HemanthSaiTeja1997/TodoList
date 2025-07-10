@@ -12,6 +12,7 @@ import { Itodo } from '../../interface/itodo';
 import { SharedButton } from "../shared-button/shared-button";
 import { ButtonLabel } from '../../button-labels.enum';
 import { CommonModule } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-add-todo',
   imports: [ReactiveFormsModule, SharedButton,CommonModule],
@@ -25,7 +26,8 @@ export class AddTodo {
   constructor(
     private fb: FormBuilder,
     private todoservice: TodoService,
-    private router: Router
+    private router: Router,
+    private toastMessage:ToastrService
   ) {
     this.addTodoList = this.fb.group({
       description: ['', [Validators.required, Validators.minLength(0)]],
@@ -39,10 +41,12 @@ export class AddTodo {
         .httpCall<Itodo>('POST', '/', this.addTodoList.value)
         .subscribe({
           next: () => {
+            this.toastMessage.success("Task Added Successfully!");
             this.todoservice.triggerTodoListRefresh();
             this.addTodoList.reset({ status: 'Pending' });
           },
           error: (error) => {
+            this.toastMessage.error("Failed Adding Todo Task!");
             console.error(error);
           },
           complete: () => {

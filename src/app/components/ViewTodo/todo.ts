@@ -7,6 +7,7 @@ import { Itodo } from '../../interface/itodo';
 import { Router } from '@angular/router';
 import { SharedButton } from "../shared-button/shared-button";
 import { ButtonLabel } from '../../button-labels.enum';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-todo',
@@ -19,7 +20,7 @@ export class Todo implements OnInit {
   
   searchTerm: string = '';
   filteredTodoList: Itodo[] = [];
-  constructor(private todoservice: TodoService, private route: Router) {}
+  constructor(private todoservice: TodoService, private route: Router,private toastMessage:ToastrService) {}
   TodoList: Itodo[] = [];
   subscription!: Subscription;
 
@@ -68,9 +69,11 @@ export class Todo implements OnInit {
     const deleteSubscription: Subscription= this.todoservice.httpCall<void>('DELETE', `/${id}`).subscribe({
       next: () => {
         this.getTodoList();
+        this.toastMessage.success("Todo Deleted Succussfully!")
       },
       error: (error) => {
         console.error('Error deleting user:', error);
+        this.toastMessage.error("Failed Deleting Task")
       },
        complete: () => {
         if (!deleteSubscription.closed) {

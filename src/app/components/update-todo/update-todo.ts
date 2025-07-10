@@ -6,6 +6,7 @@ import { Itodo } from '../../interface/itodo';
 import { Subscription, take } from 'rxjs';
 import { SharedButton } from '../shared-button/shared-button';
 import { ButtonLabel } from '../../button-labels.enum';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-todo',
@@ -21,7 +22,8 @@ export class UpdateTodo implements OnInit {
     private todoService: TodoService,
     private activeRoute: ActivatedRoute,
     private route: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastMessage:ToastrService
   ) {
     this.updateTodoFrom = this.fb.group({
       id: [''],
@@ -60,10 +62,12 @@ this.loadTodoData();
       .httpCall<Itodo>('PUT', `/${this.todoId.tid}`, this.updateTodoFrom.value)
       .subscribe({
         next: () => {
+          this.toastMessage.success("Update Successful!")
           this.route.navigateByUrl('viewTodo');
           this.todoService.triggerTodoListRefresh();
         },
         error:(error)=>{
+          this.toastMessage.error("Failed updating...!")
             console.error(error);
         },
         complete:()=>{
