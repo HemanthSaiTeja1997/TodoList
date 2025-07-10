@@ -33,9 +33,9 @@ export class AddTodo {
     });
   }
   onSubmit(): void {
-    let { description, status } = this.addTodoList.value;
+    const { description, status } = this.addTodoList.value;
     if (this.addTodoList.valid && description?.trim() && status?.trim()) {
-      let postSubsription: Subscription = this.todoservice
+      const postSubsription: Subscription = this.todoservice
         .httpCall<Itodo>('POST', '/', this.addTodoList.value)
         .subscribe({
           next: () => {

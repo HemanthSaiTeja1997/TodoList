@@ -30,12 +30,7 @@ export class Todo implements OnInit {
       },
     });
   }
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
-  }
-  filterTodoList() {
+  filterTodoList() :void{
     const term = this.searchTerm.trim().toLowerCase();
     if (!term) {
       this.filteredTodoList = this.TodoList;
@@ -70,14 +65,18 @@ export class Todo implements OnInit {
     this.route.navigate(['updateTodo', id]);
   }
   ondelete(id: number) :void{
-    this.todoservice.httpCall<void>('DELETE', `/${id}`).subscribe({
+    const deleteSubscription: Subscription= this.todoservice.httpCall<void>('DELETE', `/${id}`).subscribe({
       next: () => {
         this.getTodoList();
       },
       error: (error) => {
         console.error('Error deleting user:', error);
-        alert('Failed to delete user. Please try again later.');
       },
+       complete: () => {
+        if (!deleteSubscription.closed) {
+          deleteSubscription.unsubscribe();
+        }
+      }
     });
   }
 }
