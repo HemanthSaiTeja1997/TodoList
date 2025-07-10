@@ -44,7 +44,7 @@ this.loadTodoData();
       tid: this.activeRoute.snapshot.params['id'],
     };
     this.todoService
-      .httpCall<Itodo>('GET', `/${this.todoId.tid}`)
+      .apiRequest<Itodo>('GET', `/${this.todoId.tid}`)
       .pipe(take(1))
       .subscribe({
         next: (res) => {
@@ -59,12 +59,11 @@ this.loadTodoData();
   }
   onSubmit():void {
    const updateSubsription: Subscription = this.todoService
-      .httpCall<Itodo>('PUT', `/${this.todoId.tid}`, this.updateTodoFrom.value)
+      .apiRequest<Itodo>(this.buttonLabel.PUT, `/${this.todoId.tid}`, this.updateTodoFrom.value)
       .subscribe({
         next: () => {
           this.toastMessage.success("Update Successful!")
-          this.route.navigateByUrl('viewTodo');
-          this.todoService.triggerTodoListRefresh();
+          this.route.navigateByUrl(this.buttonLabel.routeToViewTodo);
         },
         error:(error)=>{
           this.toastMessage.error("Failed updating...!")

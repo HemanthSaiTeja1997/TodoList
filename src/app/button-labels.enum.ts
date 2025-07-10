@@ -8,6 +8,11 @@ export enum ButtonLabel {
   routeToViewTodo='viewTodo',
   headerLadel='Click Here To Add Todo',
   updateClass='btn',
-  deleteClass='btn btn-danger'
+  deleteClass='btn btn-danger',
+  POST='POST',
+  GET='GET',
+  PUT='PUT',
+  DELETE='DELETE',
+  routeToUpdateTodo="updateTodo"
 
 }

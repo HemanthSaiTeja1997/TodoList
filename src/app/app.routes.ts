@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  {path:'',redirectTo:'addTodo',pathMatch:'full'},
   {
     path: 'updateTodo/:id',
     loadComponent: () =>
@@ -17,4 +16,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/add-todo/add-todo').then((m) => m.AddTodo),
   },
+   {
+    path: 'header',
+    loadComponent: () =>
+      import('./components/header-component/header-component').then((m) => m.HeaderComponent),
+  },
+  { path: '', redirectTo: 'addTodo', pathMatch: 'full' },
+
 ];

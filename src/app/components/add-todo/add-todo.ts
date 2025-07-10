@@ -1,21 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { TodoService } from '../../services/todo-service';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { Itodo } from '../../interface/itodo';
-import { SharedButton } from "../shared-button/shared-button";
-import { ButtonLabel } from '../../button-labels.enum';
-import { CommonModule } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
+import { ButtonLabel } from '../../button-labels.enum';
+import { Itodo } from '../../interface/itodo';
+import { TodoService } from '../../services/todo-service';
+import { SharedButton } from "../shared-button/shared-button";
+import { HeaderComponent } from "../header-component/header-component";
 @Component({
   selector: 'app-add-todo',
-  imports: [ReactiveFormsModule, SharedButton,CommonModule],
+  imports: [ReactiveFormsModule, SharedButton, CommonModule],
   templateUrl: './add-todo.html',
   styleUrl: './add-todo.scss',
 })
@@ -38,11 +39,10 @@ export class AddTodo {
     const { description, status } = this.addTodoList.value;
     if (this.addTodoList.valid && description?.trim() && status?.trim()) {
       const postSubsription: Subscription = this.todoservice
-        .httpCall<Itodo>('POST', '/', this.addTodoList.value)
+        .apiRequest<Itodo>(this.buttonLabel.POST, '/', this.addTodoList.value)
         .subscribe({
           next: () => {
             this.toastMessage.success("Task Added Successfully!");
-            this.todoservice.triggerTodoListRefresh();
             this.addTodoList.reset({ status: 'Pending' });
           },
           error: (error) => {
