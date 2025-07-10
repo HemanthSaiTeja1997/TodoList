@@ -8,7 +8,13 @@
     />
   </div>
 
-  <div class="box-viewTodo">
+  <div
+    class="box-viewTodo"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="loadMoreUsers()"
+  >
     <table class="tablebox">
       <thead>
         <tr>
@@ -50,9 +56,6 @@
               (onClickEvent)="ondelete(todo.id)"
               [customClass]="'btn btn-danger'"
             />
-            <!-- <button class="btn-delete" (click)="ondelete(todo.id)">
-              Delete
-            </button> -->
           </td>
         </tr>
       </tbody>

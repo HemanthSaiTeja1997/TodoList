@@ -2,10 +2,12 @@ $primaryColor: #007bff;
 $PrimaryBorder: 1px solid #ccc;
 $Margin: 10px;
 $PrimaryPadding: 10px 12px;
-$LabelColor:#333;
+$LabelColor: #333;
+$AlignContent:center;
+$primaryFontFamily:Arial, sans-serif;
 
 @mixin commonButton($color) {
-  padding:  $PrimaryPadding;
+  padding: $PrimaryPadding;
   background-color: $color;
   border: none;
   color: white;
@@ -22,8 +24,8 @@ $LabelColor:#333;
 .btn-group {
   display: flex;
   gap: 12px;
-  justify-content: center;
-  align-items: center;
+  justify-content: $AlignContent;
+  align-items: $AlignContent;
   flex-wrap: wrap;
   margin-bottom: $Margin;
   border-bottom: $PrimaryBorder;
@@ -41,7 +43,7 @@ $LabelColor:#333;
 }
 
 .box h1 {
-  text-align: center;
+  text-align: $AlignContent;
   color: $primaryColor;
   margin-bottom: $Margin;
 }
@@ -49,9 +51,10 @@ $LabelColor:#333;
 .box-viewTodo {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: $AlignContent;
   margin-top: $Margin;
 }
+
 
 .box-viewTodo div {
   margin-top: $Margin;
@@ -65,12 +68,12 @@ label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
-  color:$LabelColor;
+  color: $LabelColor;
 }
 
 input[type="text"] {
   width: 100%;
-  padding:  $PrimaryPadding;
+  padding: $PrimaryPadding;
   border: $PrimaryBorder;
   border-radius: 5px;
   box-sizing: border-box;
@@ -86,7 +89,7 @@ input[type="text"]:focus {
   display: flex;
   flex-direction: row;
   gap: 10px;
-  justify-content: center;
+  justify-content: $AlignContent;
   flex-wrap: wrap;
 }
 
@@ -99,17 +102,17 @@ input[type="text"]:focus {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   overflow: hidden;
-  font-family: Arial, sans-serif;
+  font-family:$primaryFontFamily;
 }
 
 .tablebox th {
-  padding:  $PrimaryPadding;
-  text-align: center;
+  padding: $PrimaryPadding;
+  text-align: $AlignContent;
   font-weight: bold;
 }
 
 .tablebox td {
-  padding:  $PrimaryPadding;
+  padding: $PrimaryPadding;
   border-bottom: $PrimaryBorder;
 }
 
@@ -123,7 +126,7 @@ input[type="text"]:focus {
 
 .search-box input[type="text"] {
   width: 300px;
-  padding:  $PrimaryPadding;
+  padding: $PrimaryPadding;
   border: $PrimaryBorder;
   border-radius: 25px;
   font-size: 16px;
@@ -133,7 +136,7 @@ input[type="text"]:focus {
 }
 
 .search-box input[type="text"]:focus {
-  border-color:$primaryColor;
+  border-color: $primaryColor;
   box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
 }
 
@@ -144,6 +147,11 @@ button.btn:disabled {
   opacity: 0.6;
 }
 
-.error-color{
-  color:  rgb(236, 41, 41);
+.error-color {
+  color: rgb(236, 41, 41);
+}
+
+.viewport {
+  height: 500px;
+  width: 70%;
 }

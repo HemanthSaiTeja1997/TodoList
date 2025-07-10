@@ -17,7 +17,7 @@ import { HeaderComponent } from "../header-component/header-component";
 import { TodoForm } from "../todo-form/todo-form";
 @Component({
   selector: 'app-add-todo',
-  imports: [ReactiveFormsModule, SharedButton, CommonModule, TodoForm],
+  imports: [ReactiveFormsModule, CommonModule, TodoForm],
   templateUrl: './add-todo.html',
   styleUrl: './add-todo.scss',
 })

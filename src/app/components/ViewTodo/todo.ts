@@ -8,10 +8,11 @@ import { Router } from '@angular/router';
 import { SharedButton } from '../shared-button/shared-button';
 import { ButtonLabel } from '../../button-labels.enum';
 import { ToastrService } from 'ngx-toastr';
+import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 
 @Component({
   selector: 'app-todo',
-  imports: [CommonModule, FormsModule, SharedButton],
+  imports: [CommonModule, FormsModule, SharedButton, InfiniteScrollDirective],
   templateUrl: './todo.html',
   styleUrl: './todo.scss',
 })
@@ -20,6 +21,10 @@ export class Todo implements OnInit {
 
   searchTerm: string = '';
   filteredTodoList: Itodo[] = [];
+  displayedUsers: any[] = []; // Data shown with infinite scroll
+  page: number = 0;
+  pageSize: number = 10;
+  loading: boolean = false;
   constructor(
     private todoservice: TodoService,
     private route: Router,
@@ -42,6 +47,20 @@ export class Todo implements OnInit {
         todo.description.toLowerCase().includes(term) ||
         todo.status.toLowerCase().includes(term)
     );
+  }
+  loadMoreUsers() {
+    if (this.loading) return;
+
+    this.loading = true;
+    const start = this.page * this.pageSize;
+    const end = start + this.pageSize;
+
+    const nextChunk = this.filteredTodoList.slice(start, end);
+    setTimeout(() => {
+      this.displayedUsers = [...this.displayedUsers, ...nextChunk];
+      this.page++;
+      this.loading = false;
+    }, 500);
   }
   getTodoList(): void {
     const getSubscription: Subscription = this.todoservice

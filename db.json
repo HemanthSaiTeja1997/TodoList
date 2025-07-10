@@ -36,9 +36,9 @@
       "status": "Completed"
     },
     {
+      "id": 9,
       "description": "breakFast At 11",
-      "status": "Pending",
-      "id": 9
+      "status": "Completed"
     }
   ]
 }
