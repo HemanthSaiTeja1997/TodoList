@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from '../../services/todo-service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Itodo } from '../../interface/itodo';
@@ -9,10 +9,19 @@ import { SharedButton } from '../shared-button/shared-button';
 import { ButtonLabel } from '../../button-labels.enum';
 import { ToastrService } from 'ngx-toastr';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
+import { TodoSearchFilterPipe } from '../../pipes/todo-search-filter-pipe';
+import { SharedInput } from "../shared-input/shared-input";
 
 @Component({
   selector: 'app-todo',
-  imports: [CommonModule, FormsModule, SharedButton, InfiniteScrollDirective],
+  imports: [
+    CommonModule,
+    FormsModule,
+    SharedButton,
+    InfiniteScrollDirective,
+    TodoSearchFilterPipe,
+    SharedInput
+],
   templateUrl: './todo.html',
   styleUrl: './todo.scss',
 })
@@ -33,20 +42,9 @@ export class Todo implements OnInit {
   TodoList: Itodo[] = [];
   subscription!: Subscription;
 
+  listOfTodo!: Observable<Itodo[]>;
   ngOnInit(): void {
     this.getTodoList();
-  }
-  filterTodoList(): void {
-    const term = this.searchTerm.trim().toLowerCase();
-    if (!term) {
-      this.filteredTodoList = this.TodoList;
-      return;
-    }
-    this.filteredTodoList = this.TodoList.filter(
-      (todo) =>
-        todo.description.toLowerCase().includes(term) ||
-        todo.status.toLowerCase().includes(term)
-    );
   }
   loadMoreUsers() {
     if (this.loading) return;
@@ -63,23 +61,10 @@ export class Todo implements OnInit {
     }, 500);
   }
   getTodoList(): void {
-    const getSubscription: Subscription = this.todoservice
-      .apiRequest<Itodo[]>(this.buttonLabel.GET, '/')
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          this.TodoList = res;
-          this.filterTodoList();
-        },
-        error: (error) => {
-          console.error(error);
-        },
-        complete: () => {
-          if (!getSubscription.closed) {
-            getSubscription.unsubscribe();
-          }
-        },
-      });
+    this.listOfTodo = this.todoservice.apiRequest<Itodo[]>(
+      this.buttonLabel.GET,
+      '/'
+    );
   }
 
   updateUser(id: number): void {

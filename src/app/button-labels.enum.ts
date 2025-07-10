@@ -12,6 +12,7 @@ export enum ButtonLabel {
   GET='GET',
   PUT='PUT',
   DELETE='DELETE',
-  routeToUpdateTodo="header/updateTodo"
+  routeToUpdateTodo="header/updateTodo",
+  SEARCH='Search'
 
 }

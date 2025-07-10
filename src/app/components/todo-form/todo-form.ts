@@ -15,6 +15,5 @@ export class TodoForm {
   @Input() buttonLabel: string = 'Submit';
   @Input() route: string = '';
   @Input() showStatus: boolean = false;
-  @Output() submitForm = new EventEmitter<void>();
-  @Output() onClickEvent = new EventEmitter();
+  @Output() submitForm = new EventEmitter();
 }
