@@ -12,9 +12,9 @@ import { Subscription } from 'rxjs';
 import { ButtonLabel } from '../../button-labels.enum';
 import { Itodo } from '../../interface/itodo';
 import { TodoService } from '../../services/todo-service';
-import { SharedButton } from "../shared-button/shared-button";
-import { HeaderComponent } from "../header-component/header-component";
-import { TodoForm } from "../todo-form/todo-form";
+import { SharedButton } from '../shared-button/shared-button';
+import { HeaderComponent } from '../header-component/header-component';
+import { TodoForm } from '../todo-form/todo-form';
 @Component({
   selector: 'app-add-todo',
   imports: [ReactiveFormsModule, CommonModule, TodoForm],
@@ -37,6 +37,9 @@ export class AddTodo {
   }
   onSubmit(): void {
     const { description, status } = this.addTodoList.value;
+    if (this.addTodoList.invalid) {
+      this.toastMessage.warning('Please Enter your Task Description');
+    }
     if (this.addTodoList.valid && description?.trim() && status?.trim()) {
       const postSubsription: Subscription = this.todoservice
         .apiRequest<Itodo>(this.buttonLabel.POST, '/', this.addTodoList.value)
