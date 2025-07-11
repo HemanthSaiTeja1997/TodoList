@@ -26,9 +26,9 @@
       "status": "Completed"
     },
     {
+      "id": 7,
       "description": "lucky me",
-      "status": "Pending",
-      "id": 7
+      "status": "Completed"
     }
   ]
 }

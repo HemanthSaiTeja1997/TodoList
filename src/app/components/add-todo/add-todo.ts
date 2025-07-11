@@ -23,13 +23,13 @@ import { TodoForm } from "../todo-form/todo-form";
 })
 export class AddTodo {
   addTodoList: FormGroup;
-  buttonLabel = ButtonLabel; 
-  
+  buttonLabel = ButtonLabel;
+
   constructor(
     private fb: FormBuilder,
     private todoservice: TodoService,
     private router: Router,
-    private toastMessage:ToastrService
+    private toastMessage: ToastrService
   ) {
     this.addTodoList = this.fb.group({
       description: ['', [Validators.required, Validators.minLength(0)]],
@@ -43,11 +43,11 @@ export class AddTodo {
         .apiRequest<Itodo>(this.buttonLabel.POST, '/', this.addTodoList.value)
         .subscribe({
           next: () => {
-            this.toastMessage.success("Task Added Successfully!");
+            this.toastMessage.success('Task Added Successfully!');
             this.addTodoList.reset({ status: 'Pending' });
           },
           error: (error) => {
-            this.toastMessage.error("Failed Adding Todo Task!");
+            this.toastMessage.error('Failed Adding Todo Task!');
             console.error(error);
           },
           complete: () => {

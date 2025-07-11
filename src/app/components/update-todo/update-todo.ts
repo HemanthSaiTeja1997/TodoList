@@ -45,7 +45,7 @@ export class UpdateTodo implements OnInit {
       tid: this.activeRoute.snapshot.params['id'],
     };
     this.todoService
-      .apiRequest<Itodo>('GET', `/${this.todoId.tid}`)
+      .apiRequest<Itodo>(this.buttonLabel.GET, `/${this.todoId.tid}`)
       .pipe(take(1))
       .subscribe({
         next: (res) => {
