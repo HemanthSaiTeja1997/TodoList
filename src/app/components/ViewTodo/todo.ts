@@ -29,7 +29,7 @@ import { LoggerService } from '../../services/logger-service';
 })
 export class Todo implements OnInit {
   apiMethods = ApiMethods;
-  constants=APP_CONSTANTS;
+  constants = APP_CONSTANTS;
   searchTerm: string = '';
   displayedTodoList: Itodo[] = []; // Data shown with infinite scroll
   page: number = 0;
@@ -39,7 +39,7 @@ export class Todo implements OnInit {
     private todoservice: TodoService,
     private route: Router,
     private toastMessage: ToastrService,
-    private logger:LoggerService
+    private logger: LoggerService
   ) {}
   TodoList: Itodo[] = [];
   subscription!: Subscription;
@@ -48,7 +48,7 @@ export class Todo implements OnInit {
   ngOnInit(): void {
     this.getTodoList();
   }
-  loadMoreUsers() {
+  loadMoreUsers(): void {
     if (this.loading) return;
 
     this.loading = true;
@@ -78,11 +78,15 @@ export class Todo implements OnInit {
       .subscribe({
         next: () => {
           this.getTodoList();
-          this.toastMessage.success(this.constants.TOAST_TASK_DELETE_SUCCESS_MESSAGE);
+          this.toastMessage.success(
+            this.constants.TOAST_TASK_DELETE_SUCCESS_MESSAGE
+          );
         },
         error: (error) => {
-          this.logger.logWithError("Error Deleting Todo",error)
-          this.toastMessage.error(this.constants.TOAST_TASK_DELETE_FAILED_MESSAGE);
+          this.logger.logWithError('Error Deleting Todo', error);
+          this.toastMessage.error(
+            this.constants.TOAST_TASK_DELETE_FAILED_MESSAGE
+          );
         },
         complete: () => {
           if (!deleteSubscription.closed) {
