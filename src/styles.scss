@@ -1,25 +1,27 @@
 $primaryColor: #007bff;
-$PrimaryBorder: 1px solid #ccc;
-$Margin: 10px;
-$PrimaryPadding: 10px 12px;
-$LabelColor: #333;
-$AlignContent:center;
+$primaryBorder: 1px solid #ccc;
+$primaryFontWeight:bolder;
+$primaryBorderRadius:25px;
+$primaryFontSize:16px;
+$primaryPadding: 10px 12px;
 $primaryFontFamily:Arial, sans-serif;
-$BackGroundColor:#d7f0ea;
-$DivBackGroundColor:aliceblue ;
-$PrimaryBorderRadius:25px;
-$PrimaryFontSize:16px;
-$PrimaryFontWeight:bolder;
+$margin: 10px;
+$labelColor: #333;
+$alignContent:center;
+$backGroundColor:#d7f0ea;
+$divBackGroundColor:aliceblue ;
+$primaryButtonColor: #26f426;
+$deleteButtonColor: rgb(248, 45, 45);
 @mixin commonButton($color) {
-  padding: $PrimaryPadding;
+  padding: $primaryPadding;
   background-color: $color;
   border: none;
-  color: $DivBackGroundColor;
-  border-radius: $PrimaryBorderRadius;
+  color: $divBackGroundColor;
+  border-radius: $primaryBorderRadius;
   cursor: pointer;
-  font-size: $PrimaryFontSize;
+  font-size: $primaryFontSize;
   transition: background-color 0.3s ease;
-  margin: $Margin;
+  margin: $margin;
   width: fit-content;
 }
 
@@ -27,13 +29,13 @@ $PrimaryFontWeight:bolder;
 .btn-group {
   display: flex;
   gap: 12px;
-  justify-content: $AlignContent;
-  align-items: $AlignContent;
+  justify-content: $alignContent;
+  align-items: $alignContent;
   flex-wrap: wrap;
-  margin-bottom: $Margin;
-  border-bottom: $PrimaryBorder;
-  background-color: $DivBackGroundColor;
-  border-radius: $PrimaryBorderRadius;
+  margin-bottom: $margin;
+  border-bottom: $primaryBorder;
+  background-color: $divBackGroundColor;
+  border-radius: $primaryBorderRadius;
 }
 
 
@@ -41,49 +43,49 @@ $PrimaryFontWeight:bolder;
   max-width: 500px;
   margin: 50px auto;
   padding: 30px;
-  border: $PrimaryBorder;
-  border-radius: $PrimaryBorderRadius;
-  background-color:$BackGroundColor;
+  border: $primaryBorder;
+  border-radius: $primaryBorderRadius;
+  background-color:$backGroundColor;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .box h1 {
-  text-align: $AlignContent;
+  text-align: $alignContent;
   color: $primaryColor;
-  margin-bottom: $Margin;
+  margin-bottom: $margin;
 }
 
 .box-viewTodo {
   display: flex;
   flex-direction: column;
-  align-items: $AlignContent;
-  margin-top: $Margin;
-  background-color: $DivBackGroundColor;
-  border-radius: $PrimaryBorderRadius;
+  align-items: $alignContent;
+  margin-top: $margin;
+  background-color: $divBackGroundColor;
+  border-radius: $primaryBorderRadius;
 
 }
 
 
 .box-viewTodo div {
-  margin-top: $Margin;
+  margin-top: $margin;
 }
 
 form div {
-  margin-bottom: $Margin;
+  margin-bottom: $margin;
 }
 
 label {
   display: block;
-  margin: $Margin;
-  font-weight: $PrimaryFontWeight;
-  color: $LabelColor;
+  margin: $margin;
+  font-weight: $primaryFontWeight;
+  color: $labelColor;
 }
 
 input[type="text"] {
   width: 100%;
-  padding: $PrimaryPadding;
-  border: $PrimaryBorder;
-  border-radius: $PrimaryBorderRadius;
+  padding: $primaryPadding;
+  border: $primaryBorder;
+  border-radius: $primaryBorderRadius;
   box-sizing: border-box;
   transition: border-color 0.3s;
 }
@@ -97,7 +99,7 @@ input[type="text"]:focus {
   display: flex;
   flex-direction: row;
   gap: 10px;
-  justify-content: $AlignContent;
+  justify-content: $alignContent;
   flex-wrap: wrap;
 }
 
@@ -105,39 +107,39 @@ input[type="text"]:focus {
 .tablebox {
   width: 100%;
   border-collapse: collapse;
-  margin: $Margin;
-  background-color: $BackGroundColor;
+  margin: $margin;
+  background-color: $backGroundColor;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  border-radius: $PrimaryBorderRadius;
+  border-radius: $primaryBorderRadius;
   overflow: hidden;
   font-family:$primaryFontFamily;
 }
 
 .tablebox th {
-  padding: $PrimaryPadding;
-  text-align: $AlignContent;
-  font-weight: $PrimaryFontWeight;
+  padding: $primaryPadding;
+  text-align: $alignContent;
+  font-weight: $primaryFontWeight;
 }
 
 .tablebox td {
-  padding: $PrimaryPadding;
-  border-bottom: $PrimaryBorder;
+  padding: $primaryPadding;
+  border-bottom: $primaryBorder;
 }
 
 .tablebox tr:nth-child(even) {
-  background-color: $BackGroundColor;
+  background-color: $backGroundColor;
 }
 
 .tablebox tr:hover {
-  background-color:$BackGroundColor;
+  background-color:$backGroundColor;
 }
 
 .search-box input[type="text"] {
   width: 300px;
-  padding: $PrimaryPadding;
-  border: $PrimaryBorder;
-  border-radius: $PrimaryBorderRadius;
-  font-size: $PrimaryFontSize;
+  padding: $primaryPadding;
+  border: $primaryBorder;
+  border-radius: $primaryBorderRadius;
+  font-size: $primaryFontSize;
   outline: none;
   transition: all 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

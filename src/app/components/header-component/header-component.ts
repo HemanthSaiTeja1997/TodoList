@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedButton } from '../shared-button/shared-button';
-import { ButtonLabel } from '../../button-labels.enum';
 import { RouterOutlet } from '@angular/router';
+import { APP_CONSTANTS } from '../../constants';
 
 @Component({
   selector: 'app-header-component',
@@ -11,7 +11,7 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './header-component.scss',
 })
 export class HeaderComponent {
-  buttonLabel = ButtonLabel;
+  constants=APP_CONSTANTS;
   showViewTaskButton: boolean = true;
   showAddTodoButton: boolean = true;
   displayButton(): void {

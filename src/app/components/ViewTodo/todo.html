@@ -1,7 +1,7 @@
 <div class="box-viewTodo">
   <div class="search-box">
 
-    <app-shared-input [placeholder]="this.buttonLabel.SEARCH" [(modelValue)]="searchTerm"/>
+    <app-shared-input [placeholder]="constants.SEARCH" [(modelValue)]="searchTerm"/>
   </div>
 
   <div
@@ -40,7 +40,7 @@
           </td>
           <td>
             <app-shared-button
-              [label]="buttonLabel.Update"
+              [label]="constants.UPDATE"
               (onClickEvent)="updateUser(todo.id)"
               [customClass]="'btn'"
             />
@@ -48,7 +48,7 @@
           <td>
             <app-shared-button
               [isDeleteButton]="true"
-              [label]="buttonLabel.Delete"
+              [label]="constants.DELETE"
               (onClickEvent)="ondelete(todo.id)"
               [customClass]="'btn btn-danger'"
             />

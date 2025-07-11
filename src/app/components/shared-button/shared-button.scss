@@ -1,11 +1,9 @@
 @import './../../../styles.scss';
-$primaryButtonColor: #26f426;
-$deleteButtonColor: rgb(248, 45, 45);
 
 .btn {
   @include commonButton($primaryButtonColor);
 }
-.btn-danger {
 
-    @include commonButton($deleteButtonColor);
+.btn-danger {
+  @include commonButton($deleteButtonColor);
 }

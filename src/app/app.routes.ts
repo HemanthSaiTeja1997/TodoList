@@ -28,4 +28,5 @@ export const routes: Routes = [
     ],
   },
   { path: '', redirectTo: 'header', pathMatch: 'full' },
+  {path:'**',loadComponent:()=>import('./components/page-not-found/page-not-found').then((m)=>m.PageNotFound)}
 ];

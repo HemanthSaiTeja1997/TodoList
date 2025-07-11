@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { TodoService } from '../../services/todo-service';
-import { Observable, Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Itodo } from '../../interface/itodo';
 import { Router } from '@angular/router';
-import { SharedButton } from '../shared-button/shared-button';
-import { ButtonLabel } from '../../button-labels.enum';
-import { ToastrService } from 'ngx-toastr';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
+import { ToastrService } from 'ngx-toastr';
+import { Observable, Subscription } from 'rxjs';
+import { Itodo } from '../../interface/itodo';
 import { TodoSearchFilterPipe } from '../../pipes/todo-search-filter-pipe';
+import { TodoService } from '../../services/todo-service';
+import { SharedButton } from '../shared-button/shared-button';
 import { SharedInput } from '../shared-input/shared-input';
+import { ApiMethods } from '../../apiMethods.enum';
+import { APP_CONSTANTS } from '../../constants';
+import { LoggerService } from '../../services/logger-service';
 
 @Component({
   selector: 'app-todo',
@@ -26,7 +28,8 @@ import { SharedInput } from '../shared-input/shared-input';
   styleUrl: './todo.scss',
 })
 export class Todo implements OnInit {
-  buttonLabel = ButtonLabel;
+  apiMethods = ApiMethods;
+  constants=APP_CONSTANTS;
   searchTerm: string = '';
   displayedTodoList: Itodo[] = []; // Data shown with infinite scroll
   page: number = 0;
@@ -35,7 +38,8 @@ export class Todo implements OnInit {
   constructor(
     private todoservice: TodoService,
     private route: Router,
-    private toastMessage: ToastrService
+    private toastMessage: ToastrService,
+    private logger:LoggerService
   ) {}
   TodoList: Itodo[] = [];
   subscription!: Subscription;
@@ -60,25 +64,25 @@ export class Todo implements OnInit {
   }
   getTodoList(): void {
     this.listOfTodo = this.todoservice.apiRequest<Itodo[]>(
-      this.buttonLabel.GET,
+      this.apiMethods.GET,
       '/'
     );
   }
 
   updateUser(id: number): void {
-    this.route.navigate([this.buttonLabel.routeToUpdateTodo, id]);
+    this.route.navigate([this.constants.ROUTE_TO_UPDATE_TODO, id]);
   }
   ondelete(id: number): void {
     const deleteSubscription: Subscription = this.todoservice
-      .apiRequest<void>(this.buttonLabel.DELETE, `/${id}`)
+      .apiRequest<void>(this.apiMethods.DELETE, `/${id}`)
       .subscribe({
         next: () => {
           this.getTodoList();
-          this.toastMessage.success('Todo Deleted Succussfully!');
+          this.toastMessage.success(this.constants.TOAST_TASK_DELETE_SUCCESS_MESSAGE);
         },
         error: (error) => {
-          console.error('Error deleting user:', error);
-          this.toastMessage.error('Failed Deleting Task');
+          this.logger.logWithError("Error Deleting Todo",error)
+          this.toastMessage.error(this.constants.TOAST_TASK_DELETE_FAILED_MESSAGE);
         },
         complete: () => {
           if (!deleteSubscription.closed) {

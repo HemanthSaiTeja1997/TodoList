@@ -1,8 +1,8 @@
 <app-todo-form
   [formGroup]="updateTodoForm"
   [isEditMode]="true"
-  [buttonLabel]="buttonLabel.Save"
-  [route]="buttonLabel.routeToViewTodo"
+  [buttonLabel]="constants.SAVE"
+  [route]="constants.ROUTE_TO_VIEW_TODO"
   [showStatus]="true"
   (submitForm)="onSubmit()"
 />

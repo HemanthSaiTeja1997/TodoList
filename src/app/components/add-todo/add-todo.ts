@@ -6,15 +6,14 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { ButtonLabel } from '../../button-labels.enum';
 import { Itodo } from '../../interface/itodo';
 import { TodoService } from '../../services/todo-service';
-import { SharedButton } from '../shared-button/shared-button';
-import { HeaderComponent } from '../header-component/header-component';
 import { TodoForm } from '../todo-form/todo-form';
+import { ApiMethods } from '../../apiMethods.enum';
+import { APP_CONSTANTS } from '../../constants';
+import { LoggerService } from '../../services/logger-service';
 @Component({
   selector: 'app-add-todo',
   imports: [ReactiveFormsModule, CommonModule, TodoForm],
@@ -23,12 +22,14 @@ import { TodoForm } from '../todo-form/todo-form';
 })
 export class AddTodo {
   addTodoList: FormGroup;
-  buttonLabel = ButtonLabel;
+  apiMethods = ApiMethods;
+  constants = APP_CONSTANTS;
 
   constructor(
     private fb: FormBuilder,
     private todoservice: TodoService,
-    private toastMessage: ToastrService
+    private toastMessage: ToastrService,
+    private logger: LoggerService
   ) {
     this.addTodoList = this.fb.group({
       description: ['', [Validators.required, Validators.minLength(0)]],
@@ -38,19 +39,25 @@ export class AddTodo {
   onSubmit(): void {
     const { description, status } = this.addTodoList.value;
     if (this.addTodoList.invalid) {
-      this.toastMessage.warning('Please Enter your Task Description');
+      this.toastMessage.warning(
+        this.constants.TOAST_TASK_ADD_DESCRIPTION_MESSAGE
+      );
     }
     if (this.addTodoList.valid && description?.trim() && status?.trim()) {
       const postSubsription: Subscription = this.todoservice
-        .apiRequest<Itodo>(this.buttonLabel.POST, '/', this.addTodoList.value)
+        .apiRequest<Itodo>(this.apiMethods.POST, '/', this.addTodoList.value)
         .subscribe({
           next: () => {
-            this.toastMessage.success('Task Added Successfully!');
+            this.toastMessage.success(
+              this.constants.TOAST_TASK_ADD_SUCCESS_MESSAGE
+            );
             this.addTodoList.reset({ status: 'Pending' });
           },
           error: (error) => {
-            this.toastMessage.error('Failed Adding Todo Task!');
-            console.error(error);
+            this.toastMessage.error(
+              this.constants.TOAST_TASK_ADD_FAILED_MESSAGE
+            );
+            this.logger.logWithError('Somthing went wrong in Add Todo', error);
           },
           complete: () => {
             if (postSubsription.closed) {

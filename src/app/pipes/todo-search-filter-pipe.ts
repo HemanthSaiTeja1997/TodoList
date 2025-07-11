@@ -6,7 +6,9 @@ import { Itodo } from '../interface/itodo';
 })
 export class TodoSearchFilterPipe implements PipeTransform {
   transform(todos: Itodo[] | null | undefined, searchTerm: string): Itodo[] {
-    if (!todos) return [];
+    if (!todos) {
+      return [];
+    }
     if (!searchTerm?.trim()) return todos;
 
     const term = searchTerm.toLowerCase().trim();
