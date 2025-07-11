@@ -10,7 +10,7 @@ import { ButtonLabel } from '../../button-labels.enum';
 import { ToastrService } from 'ngx-toastr';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { TodoSearchFilterPipe } from '../../pipes/todo-search-filter-pipe';
-import { SharedInput } from "../shared-input/shared-input";
+import { SharedInput } from '../shared-input/shared-input';
 
 @Component({
   selector: 'app-todo',
@@ -20,17 +20,15 @@ import { SharedInput } from "../shared-input/shared-input";
     SharedButton,
     InfiniteScrollDirective,
     TodoSearchFilterPipe,
-    SharedInput
-],
+    SharedInput,
+  ],
   templateUrl: './todo.html',
   styleUrl: './todo.scss',
 })
 export class Todo implements OnInit {
   buttonLabel = ButtonLabel;
-
   searchTerm: string = '';
-  filteredTodoList: Itodo[] = [];
-  displayedUsers: any[] = []; // Data shown with infinite scroll
+  displayedTodoList: Itodo[] = []; // Data shown with infinite scroll
   page: number = 0;
   pageSize: number = 10;
   loading: boolean = false;
@@ -53,9 +51,9 @@ export class Todo implements OnInit {
     const start = this.page * this.pageSize;
     const end = start + this.pageSize;
 
-    const nextChunk = this.filteredTodoList.slice(start, end);
+    const nextChunk = this.TodoList.slice(start, end);
     setTimeout(() => {
-      this.displayedUsers = [...this.displayedUsers, ...nextChunk];
+      this.displayedTodoList = [...this.displayedTodoList, ...nextChunk];
       this.page++;
       this.loading = false;
     }, 500);

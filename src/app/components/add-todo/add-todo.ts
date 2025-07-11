@@ -28,7 +28,6 @@ export class AddTodo {
   constructor(
     private fb: FormBuilder,
     private todoservice: TodoService,
-    private router: Router,
     private toastMessage: ToastrService
   ) {
     this.addTodoList = this.fb.group({

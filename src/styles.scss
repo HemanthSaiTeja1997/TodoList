@@ -5,19 +5,22 @@ $PrimaryPadding: 10px 12px;
 $LabelColor: #333;
 $AlignContent:center;
 $primaryFontFamily:Arial, sans-serif;
-
+$BackGroundColor:#d7f0ea;
+$DivBackGroundColor:aliceblue ;
+$PrimaryBorderRadius:25px;
+$PrimaryFontSize:16px;
+$PrimaryFontWeight:bolder;
 @mixin commonButton($color) {
   padding: $PrimaryPadding;
   background-color: $color;
   border: none;
-  color: white;
-  border-radius: 5px;
+  color: $DivBackGroundColor;
+  border-radius: $PrimaryBorderRadius;
   cursor: pointer;
-  font-size: 14px;
-  min-width: 120px;
+  font-size: $PrimaryFontSize;
   transition: background-color 0.3s ease;
   margin: $Margin;
-  width: auto;
+  width: fit-content;
 }
 
 
@@ -29,6 +32,8 @@ $primaryFontFamily:Arial, sans-serif;
   flex-wrap: wrap;
   margin-bottom: $Margin;
   border-bottom: $PrimaryBorder;
+  background-color: $DivBackGroundColor;
+  border-radius: $PrimaryBorderRadius;
 }
 
 
@@ -37,8 +42,8 @@ $primaryFontFamily:Arial, sans-serif;
   margin: 50px auto;
   padding: 30px;
   border: $PrimaryBorder;
-  border-radius: 10px;
-  background-color: #f9f9f9;
+  border-radius: $PrimaryBorderRadius;
+  background-color:$BackGroundColor;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -53,6 +58,9 @@ $primaryFontFamily:Arial, sans-serif;
   flex-direction: column;
   align-items: $AlignContent;
   margin-top: $Margin;
+  background-color: $DivBackGroundColor;
+  border-radius: $PrimaryBorderRadius;
+
 }
 
 
@@ -66,8 +74,8 @@ form div {
 
 label {
   display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+  margin: $Margin;
+  font-weight: $PrimaryFontWeight;
   color: $LabelColor;
 }
 
@@ -75,7 +83,7 @@ input[type="text"] {
   width: 100%;
   padding: $PrimaryPadding;
   border: $PrimaryBorder;
-  border-radius: 5px;
+  border-radius: $PrimaryBorderRadius;
   box-sizing: border-box;
   transition: border-color 0.3s;
 }
@@ -98,9 +106,9 @@ input[type="text"]:focus {
   width: 100%;
   border-collapse: collapse;
   margin: $Margin;
-  background-color: #f4f6db;
+  background-color: $BackGroundColor;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
+  border-radius: $PrimaryBorderRadius;
   overflow: hidden;
   font-family:$primaryFontFamily;
 }
@@ -108,7 +116,7 @@ input[type="text"]:focus {
 .tablebox th {
   padding: $PrimaryPadding;
   text-align: $AlignContent;
-  font-weight: bold;
+  font-weight: $PrimaryFontWeight;
 }
 
 .tablebox td {
@@ -117,19 +125,19 @@ input[type="text"]:focus {
 }
 
 .tablebox tr:nth-child(even) {
-  background-color: #edf7f4;
+  background-color: $BackGroundColor;
 }
 
 .tablebox tr:hover {
-  background-color: #d7f0ea;
+  background-color:$BackGroundColor;
 }
 
 .search-box input[type="text"] {
   width: 300px;
   padding: $PrimaryPadding;
   border: $PrimaryBorder;
-  border-radius: 25px;
-  font-size: 16px;
+  border-radius: $PrimaryBorderRadius;
+  font-size: $PrimaryFontSize;
   outline: none;
   transition: all 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
